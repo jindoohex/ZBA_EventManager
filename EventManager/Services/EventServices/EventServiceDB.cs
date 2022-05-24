@@ -50,10 +50,10 @@ namespace EventManager.Services.EventServices
 
                 int rowsBooking = cmdDeleteBooking.ExecuteNonQuery();
 
-                if (rowsBooking != 1)
-                {
-                    throw new ArgumentException("Not deleted");
-                }
+                //if (rowsBooking != 1)
+                //{
+                //    throw new ArgumentException("Not deleted");
+                //}
 
                 cmdDeleteBooking.Connection.Close();
 
