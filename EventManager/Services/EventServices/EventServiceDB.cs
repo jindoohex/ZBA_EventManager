@@ -35,19 +35,33 @@ namespace EventManager.Services.EventServices
             
 
             String sql = "delete from Event where EventID=@ID";
+            String sqlDeleteBooking = "delete from UserBooking where EventID=@EventID";
+
 
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
 
-                connection.Open();
+                
+
+                SqlCommand cmdDeleteBooking = new SqlCommand(sqlDeleteBooking, connection);
+                cmdDeleteBooking.Parameters.AddWithValue("@EventID", id);
+                cmdDeleteBooking.Connection.Open();
+
+                int rowsBooking = cmdDeleteBooking.ExecuteNonQuery();
+
+                if (rowsBooking != 1)
+                {
+                    throw new ArgumentException("Not deleted");
+                }
+
+                cmdDeleteBooking.Connection.Close();
 
 
                 SqlCommand cmd = new SqlCommand(sql, connection);
-
+                cmd.Connection.Open();
 
                 cmd.Parameters.AddWithValue("@ID", id);
-
 
 
                 int rows = cmd.ExecuteNonQuery();
