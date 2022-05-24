@@ -1,0 +1,86 @@
+﻿@page
+@using EventManagerLib.model
+@using System.Diagnostics
+@model EventManager.Pages._Admin.CreateModel
+@{
+}
+
+
+<p class="alert-info">@Model.MessageValidation</p>
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <div class="form-group">
+                <label>Name:</label>
+                <input type="text" asp-for="@Model.Events.EventName" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Description:</label>
+                <input type="text" asp-for="@Model.Events.EventDesc" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Location:</label>
+                <select asp-for="@Model.Events.EventType" class="form-control">
+                    @foreach (var et in Enum.GetValues(typeof(Event.SpecificEventType)))
+                    {
+                        <option value="@et">@et</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Date:</label>
+                <input type="date" asp-for="@Model.Events.Date" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>TimeFrom:</label>
+                <input type="datetime" asp-for="@Model.Events.TimeFrom" class="form-control" placeholder="hh/mm/ss" />
+            </div>
+            <div class="form-group">
+                <label>TimeTo:</label>
+                <input type="datetime" asp-for="@Model.Events.TimeTo" class="form-control" placeholder="hh/mm/ss" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@*@section Scripts
+{
+    <script>
+        $('#myModal').getData(function () {
+            $.get();
+            setTimeout(function () {
+                $('#Modal').modal('hide');
+            }, 4000);
+        });
+        $(document).ready(function () {
+            $("#myModal").modal({ backdrop: "static" });
+            $("#myModal").modal('show');
+        });
+
+
+    </script>
+}*@
+
+@*<script>
+
+    // Attach an event handler to when the modal is opened.
+    $(document).on($.modal.OPEN, function (event, modal) {
+
+        // Use setTimeout to close the modal in 5 seconds (5000 milliseconds).
+        setTimeout(function () {
+            $.modal.close();
+        }, 5000);
+
+    });
+
+    $(document).showModalDialog
+    setTimeout(function () {
+        $('#Modal').modal('hide')
+    }, 4000);
+
+</script>*@

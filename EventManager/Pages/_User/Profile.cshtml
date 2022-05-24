@@ -1,0 +1,158 @@
+﻿@page
+@model EventManager.Pages._User.ProfileModel
+@{
+}
+
+<div class="edit-profile-wrapper">
+
+    <section>
+        <div class="edit-profile-form">
+
+            <div class="edit-profile-card-header" style="background-color: rgba(255, 220, 0, 0.25)">
+                <h1 class="edit-profile-title-wrapper">Profile Settings</h1>
+            </div>
+
+            <div class="main-card">
+
+                <div class="edit-profile-card-details">
+                    <div class="details-card-body">
+                        <h5 class="details-title">Adjust your profile to your liking</h5>
+                    </div>
+                    <div class="details-card-body">
+                        <p class="details-text">
+                            This is your profile sanctum. Here you can change your settings as you see fit!
+                        </p>
+                    </div>
+                </div>
+
+                <div class="input-card-body">
+                    <form method="post"class="p-3" style="margin: -1.5rem;">
+                        <div class="form-group">
+                            <label>First Name:</label>
+                            <input type="text" asp-for="@Model.LoggedInUser.FirstName" class="form-control" placeholder="@Model.LoggedInUser.FirstName" />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Last Name:</label>
+                            <input type="text" asp-for="@Model.LoggedInUser.LastName" class="form-control" placeholder="@Model.LoggedInUser.LastName" />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Phone:</label>
+                            <input type="number" asp-for="@Model.LoggedInUser.Phone" class="form-control" placeholder="@Model.LoggedInUser.Phone" />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Email:</label>
+                            <input type="email" asp-for="@Model.LoggedInUser.Email" class="form-control" placeholder="@Model.LoggedInUser.Email" />
+                        </div>
+
+                        @*<div class="form-group">
+                            <label>Password:</label>
+                            <input type="password" asp-for="@Model.LoggedInUser.Password" class="form-control" placeholder="@Model.LoggedInUser.Password" />
+                        </div>*@
+
+                        <div class="card-body-button">
+                            <button class="btn btn-primary" type="submit" asp-route-id="@Model.LoggedInUser.UserId" asp-page="/_User/Profile">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+
+<style>
+
+    .button-card-wrapper {
+        position: relative;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        margin-top: 2.2rem;
+        margin-bottom: -1%;
+        width: 100%;
+    }
+
+    .edit-profile-wrapper {
+        margin: 0;
+    }
+
+    .edit-profile-card-header {
+        text-transform: uppercase;
+        text-align: center;
+        font-weight: 900;
+        padding: .75rem 1.25rem;
+        margin-bottom: 0;
+        background-color: rgba(0,0,0,.03);
+        border-bottom: 1px solid rgba(100, 100, 100, 0.25);
+    }
+
+    .edit-profile-title-wrapper {
+        text-transform: uppercase;
+        font-weight: 900;
+    }
+
+    .edit-profile-form {
+        position: relative;
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        padding: 0;
+        border: 1px solid rgba(100, 100, 100, 0.25);
+        border-radius: 0.25rem;
+        box-shadow: 1px 3px 15px -3px #9d9d9d;
+        flex: 0 0 33.333333%;
+        max-width: 55.5%;
+        margin: 0 auto;
+        margin-top: 3%;
+        margin-bottom: 2%;
+    }
+
+    .edit-profile-card-details {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        padding: 4%;
+        margin-bottom: -5%;
+    }
+
+
+    .main-card {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        padding: 4%;
+    }
+
+    .input-card-body {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        padding: 4%;
+        margin-top: 1rem;
+    }
+</style>

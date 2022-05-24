@@ -1,0 +1,37 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+
+<style>
+
+    .btn {
+        width: 200px;
+        margin: 0 1.5em;
+    }
+
+    .button-wrapper {
+        
+    }
+
+    .centered {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+</style>
+
+<div class="button-wrapper centered">
+    <section class="p-4 text-center w-100 ">
+        <div class="d-md-block ">
+            <form method="post">
+                <a class="btn btn-primary" type="button" asp-page="_Login/Index">Login</a>
+                <a class="btn btn-primary" type="button" asp-page="_Registration/CreateUser">Register</a>
+            </form>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,298 @@
+﻿@page
+@using EventManagerLib.model
+@model EventManager.Pages._User.IndexModel
+@{
+}
+
+<div class="dashboard-wrapper">
+
+    <section class="header-title-wrapper">
+        <h1 class="header-text">Welcome, @Model.LoggedInUser.FirstName</h1>
+        <br />
+        <p class="time-wrapper">
+            @DateTime.Now.ToString("R")
+        </p>
+
+    </section>
+
+
+
+    <section>
+        <div class="dashboard-content">
+
+            <section class="card-list">
+
+                <div class="row">
+
+                    <div class="col-sm-4">
+
+                        <div class="card">
+                            <div class="card-header" style="background-color: rgba(255, 220, 0, 0.25); height: 49px;">
+                                <p style="text-transform: uppercase; font-weight: 600"># Featured</p>
+                            </div>
+
+                            <div class="card-body-details">
+                                <div class="card-body-details-title">
+                                    <h5>See all the events</h5>
+                                </div>
+
+                                <div class="text-container">
+                                    <p class="card-body-details-text">
+                                        Lorem ipsum dolor sit amet consectetur adipiscing elit ut labore et dolore magnaagna aliqua,
+                                        consectetur adipiscing elit ut labore et dolore magna aliqua.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="card-body-button">
+                                <form method="get">
+                                    <button class="btn btn-primary" type="submit" asp-page="/_Event/Index">Go To Events</button>
+                                </form>
+                            </div>
+
+                            <div class="card-footer">
+                                Lorem ipsum
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-sm-4">
+
+                        <div class="card">
+                            <div class="card-header" style="background-color: rgba(255, 220, 0, 0.25); height: 49px;">
+                                <p style="text-transform: uppercase; font-weight: 600"># Featured</p>
+                            </div>
+
+                            <div class="card-body-details">
+                                <div class="card-body-details-title">
+                                    <h5>See departures</h5>
+                                </div>
+
+                                <div class="text-container">
+                                    <p class="card-body-details-text">
+                                        Lorem ipsum dolor sit amet consectetur adipiscing elit ut labore et dolore magnaagna aliqua,
+                                        consectetur adipiscing elit ut labore et dolore magna aliqua.
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="card-body-button">
+                                <form method="get">
+                                    <button class="btn btn-primary" type="submit" asp-page="/_User/Train">Departures</button>
+                                </form>
+                            </div>
+
+                            <div class="card-footer">
+                                Lorem ipsum
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-sm-4">
+
+                        <div class="card">
+                            <div class="card-header" style="background-color: rgba(255, 220, 0, 0.25); height: 49px;">
+                                <p style="text-transform: uppercase; font-weight: 600"># Featured</p>
+                            </div>
+                            
+                            <div class="card-body-details">
+                                <div class="card-body-details-title">
+                                    <h5>Special title treatment</h5>
+                                </div>
+
+                                <div class="text-container">
+                                    <p class="card-body-details-text">
+                                        With supporting text below as a natural lead-in to additional content.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="card-body-button">
+                                <form method="get">
+                                    <button class="btn btn-primary" type="submit" asp-page="/">Go Somewhere</button>
+                                </form>
+                            </div>
+
+                            <div class="card-footer">
+                                Lorem ipsum
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </section>
+
+
+            <section>
+                <div class="selection-sort-wrapper">
+                    <form method="post">
+                        <select onchange="this.form.submit()" asp-for="CheckOption">
+                            <option disabled="disabled" selected="selected">####</option>
+                            <option value="Events">Events</option>
+                            <option value="UserBooking">My Bookings</option>
+                        </select>
+                    </form>
+                </div>
+            </section>
+
+
+            <section>
+
+                @if (Model.CheckOption == "Events")
+                {
+                    <table class="table">
+                        <thead>
+
+                            <tr>
+                                <th scope="row">#</th>
+                                <th scope="row">Name</th>
+                                <th scope="row">Description</th>
+                                <th scope="row">Location</th>
+                                <th scope="row">Date</th>
+                                <th scope="row">From</th>
+                                <th scope="row">To</th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            @foreach (Event evt in @Model.Events)
+                            {
+                                <tr>
+                                    <th></th>
+                                    <td style="width: 20%">@evt.EventName</td>
+                                    <td>@evt.EventDesc</td>
+                                    <td>@evt.EventType</td>
+                                    <td>@evt.Date.ToString("dd-MM-yyyy")</td>
+                                    <td>@evt.TimeFrom.ToString(@"hh\:mm")</td>
+                                    <td>@evt.TimeTo.ToString(@"hh\:mm")</td>
+                                </tr>
+
+                            }
+
+                        </tbody>
+                    </table>
+                }
+
+                @if (Model.CheckOption == "UserBooking")
+                {
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">First</th>
+                                <th scope="col">Last</th>
+                                <th scope="col">Handle</th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+
+                        @foreach (UserBooking usbk in @Model.Bookings.Where(k => k.BookingId == @Model.UserBooking.UserId))
+                            {
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>@Model.LoggedInUser.Email</td>
+                                    <td>@Model.LoggedInUser.Phone</td>
+                                    <td>@Model.UserBooking.UserId.Equals(@Model.LoggedInUser.UserId)</td>
+                                    <td></td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                }
+
+            </section>
+
+        </div>
+    </section>
+
+
+
+    <section>
+    </section>
+
+</div>
+
+<style>
+
+    .card {
+        box-shadow: 1px 3px 15px -3px #9d9d9d;
+    }
+
+    .card-body-details {
+        -ms-flex: 1 1 auto;
+        flex: 1 1 auto;
+        padding: 1.25rem;
+    }
+
+    .card-body-details-title {
+        border-bottom: 1px solid;
+        height: 7%;
+        margin-top: -1%;
+        position: absolute;
+    }
+
+    .card-body-details-text {
+        overflow: auto;
+    }
+
+    .card-body-button {
+        -ms-flex: 1 1 auto;
+        flex: 1 1 auto;
+        padding: 1.25rem;
+    }
+
+    .card-list {
+        margin-bottom: 85px;
+    }
+
+    .dashboard-content {
+        margin-top: 32px;
+    }
+
+
+    .dashboard-wrapper {
+        margin: 0
+    }
+
+
+    .header-text {
+        margin-top: 30px;
+        font-weight: 900;
+    }
+
+
+    .header-title-wrapper {
+        text-transform: uppercase;
+        margin-top: 10px;
+    }
+
+
+    .selection-sort-wrapper {
+        width: auto;
+        margin: 0 auto 1em;
+    }
+
+    .time-wrapper {
+        margin-bottom: 25px;
+        margin-top: -27px;
+        border-block: 1px solid;
+        border-block-end-width: 1px;
+        border-block-end-style: solid;
+        border-block-end-color: currentcolor;
+        border-block-end: 0;
+    }
+
+    .text-container {
+        overflow: auto;
+        height: 207px;
+        margin-top: 2.5rem;
+    }
+</style>

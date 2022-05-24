@@ -1,0 +1,263 @@
+﻿@page "{id:int}"
+
+@model EventManager.Pages._User.BookingModel
+@{
+}
+
+<div class="booking-content">
+
+    <section>
+
+        <div class="booking-form">
+
+
+            <div class="booking-card-header" style="background-color: rgba(255, 220, 0, 0.25)">
+                <h1 class="booking-title-wrapper">Make Your Reservation</h1>
+            </div>
+
+
+            <div class="main-card">
+
+                <div class="card-event-details">
+                    <div class="event-card-body">
+                        <h5 class="event-card-title">Placeholder title for selected event</h5>
+                        <p class="event-card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                            Faucibus interdum posuere lorem ipsum dolor sit amet.</p>
+                    </div>
+                </div>
+
+                <div class="input-card-body">
+
+                    <form class="p-3" style="margin: -1.5rem;">
+
+                        <div class="form-group">
+                            <label for="numberOfAttendees">How many will attend the event:</label>
+                            <select class="form-control" id="numberOfAttendees" asp-for="UserBooking.Capacity">
+                                @foreach (var cp in Model.Capacity)
+                                {
+                                    <option value="@cp">@cp</option>
+                                }
+                                    
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="seeAnotherField">Do you wish to upgrade to VIP?</label>
+                            <select class="form-control" id="seeAnotherField" asp-for="@Model.UserBooking.Vip">
+                                <option value="no">No</option>
+                                <option value="yes">Yes</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" id="otherFieldDiv">
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="RegularOption">Number of regular meals:</label>
+                                    <select class="form-control w-100" id="RegularOption" selected="1">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-6">
+                                    <label for="VeganOption">Number of vegan meals:</label>
+                                    <select class="form-control w-100" id="VeganOption" selected="1">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="seeAnotherFieldGroup">Do you wish to reserve parking?</label>
+                            <select class="form-control" id="seeAnotherFieldGroup">
+                                <option value="no">No</option>
+                                <option value="yes">Yes</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" id="otherFieldGroupDiv">
+                            <label for="otherField1">Provide your vehicular registration number:</label>
+                            <input type="text" class="form-control" id="otherField1">
+                        </div>
+
+                    </form>
+
+                </div>
+
+                <div class="button-card-wrapper">
+
+                    <form method="post">
+                        <button class="btn btn-primary form-control w-75" type="submit">Confirm Booking</button>
+                    </form>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+</div>
+
+
+
+<style>
+    .booking-content {
+    }
+
+    .booking-form {
+        position: relative;
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin: 0 auto;
+        padding: 0;
+        border: 1px solid rgba(100, 100, 100, 0.25);
+        border-radius: 0.25rem;
+        box-shadow: 1px 3px 15px -3px #9d9d9d;
+        flex: 0 0 33.333333%;
+        max-width: 55.5%;
+        margin-top: 3%;
+    }
+
+    .booking-card-header {
+        text-transform: uppercase;
+        text-align: center;
+        font-weight: 900;
+        padding: .75rem 1.25rem;
+        margin-bottom: 0;
+        background-color: rgba(0,0,0,.03);
+        border-bottom: 1px solid rgba(100, 100, 100, 0.25);
+    }
+
+    .booking-title-wrapper {
+        text-transform: uppercase;
+        font-weight: 900;
+    }
+
+    .button-card-wrapper {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        padding: 4%;
+        margin-top: -1rem;
+        text-align: center;
+    }
+
+    .card-event-details {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 1px solid rgba(0,0,0,.125);
+        border-radius: .25rem;
+        padding: 4%;
+    }
+
+    .event-card-body {
+        flex: 1 1 auto;
+        padding: 0.1rem;
+    }
+
+    .event-card-title {
+        margin-bottom: 0.75rem;
+        font-size: 1.25rem;
+        font-weight: 500;
+        line-height: 1.2;
+    }
+
+    .event-card-text {
+    }
+
+    .main-card {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        padding: 4%;
+    }
+
+    .input-card-body {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        padding: 4%;
+        margin-top: 1rem;
+    }
+</style>
+
+
+@*@section Scripts
+{
+    <script>
+
+
+        $("#seeAnotherField").change(function () {
+            if ($(this).val() == "yes") {
+                $('#otherFieldDiv').show();
+                $('#RegularOption').attr('required', '');
+                $('#RegularOption').attr('data-error', 'This field is required.');
+                $('#VeganOption').attr('required', '');
+                $('#VeganOption').attr('data-error', 'This field is required.');
+            } else {
+                $('#otherFieldDiv').hide();
+                $('#RegularOption').removeAttr('required');
+                $('#RegularOption').removeAttr('data-error');
+                $('#VeganOption').removeAttr('required');
+                $('#VeganOption').removeAttr('data-error');
+            }
+        });
+        $("#seeAnotherField").trigger("change");
+
+        $("#seeAnotherFieldGroup").change(function () {
+            if ($(this).val() == "yes") {
+                $('#otherFieldGroupDiv').show();
+                $('#otherField1').attr('required', '');
+                $('#otherField1').attr('data-error', 'This field is required.');
+                $('#otherField2').attr('required', '');
+                $('#otherField2').attr('data-error', 'This field is required.');
+            } else {
+                $('#otherFieldGroupDiv').hide();
+                $('#otherField1').removeAttr('required');
+                $('#otherField1').removeAttr('data-error');
+                $('#otherField2').removeAttr('required');
+                $('#otherField2').removeAttr('data-error');
+            }
+        });
+        $("#seeAnotherFieldGroup").trigger("change");
+
+    </script>
+}*@
