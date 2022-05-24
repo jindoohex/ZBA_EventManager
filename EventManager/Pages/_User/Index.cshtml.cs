@@ -46,15 +46,10 @@ namespace EventManager.Pages._User
         }
 
 
-        public void OnGet()
+        public void OnGet(int id)
         {
 
             LoggedInUser = _userService.GetUserById(_Login.IndexModel.LoggedInUser.UserId);
-            
-            //LoggedInUser = _Login.IndexModel.LoggedInUser;
-            
-
-            //User theUser = _userService.GetUserById();
 
             _EventList = _eventService.GetEvents();
             Events = new List<Event>(_EventList);
@@ -66,14 +61,18 @@ namespace EventManager.Pages._User
 
             _bookingList = _bookingService.GetAllBookings();
 
+            UserBooking = _bookingService.GetById(id);
+
         }
 
-        public void OnPost()
+        public void OnPost(int id)
         {
             LoggedInUser = _Login.IndexModel.LoggedInUser;
 
             _EventList = _eventService.GetEvents();
             Events = new List<Event>(_EventList);
+
+            UserBooking = _bookingService.GetById(id);
 
         }
     }
