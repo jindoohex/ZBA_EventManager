@@ -226,14 +226,25 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Attendees</th>
+                                <th scope="col">BookingID</th>
+                                <th scope="col">UserID</th>
+                                <th scope="col">EventID</th>
                                 <th scope="col">VIP</th>
-                                <th scope="col">Parking</th>
                             </tr>
 
                         </thead>
                         <tbody>
+                            @foreach (UserBooking usbk in @Model.Bookings)
+                            {
+                                <tr>
+                                    <th></th>
+                                    <td>@usbk.BookingId</td>
+                                    <td>@usbk.UserId</td>
+                                    <td>@usbk.EventId</td>
+                                    <td>@usbk.Vip</td>
 
+                                </tr>
+                            }
                         </tbody>
                     </table>
                 }
